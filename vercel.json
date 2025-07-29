@@ -1,4 +1,14 @@
 {
+    "version": 2,
+    "builds": [
+        {
+            "src": "dist/server.ts",
+            "use": "@vercel/node",
+            "config": {
+              "includeFiles": ["dist/**"]
+            }
+        }
+    ],
     "routes": [
         {
             "src": "/(.*)",

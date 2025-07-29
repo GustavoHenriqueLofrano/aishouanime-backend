@@ -1,7 +1,7 @@
 {
   "name": "aishouanimes-backend",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  "main": "index.js",
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
