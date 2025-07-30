@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserService = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
+const bcryptjs_1 = require("bcryptjs");
 class CreateUserService {
     execute(_a) {
         return __awaiter(this, arguments, void 0, function* ({ name, password }) {
@@ -34,10 +35,11 @@ class CreateUserService {
             if (userAlreadyExists) {
                 throw new Error("User already exists");
             }
+            const passwordHash = yield (0, bcryptjs_1.hash)(password, 8);
             const user = yield prisma_1.default.user.create({
                 data: {
                     name: name,
-                    password: password
+                    password: passwordHash
                 },
                 select: {
                     id: true,
