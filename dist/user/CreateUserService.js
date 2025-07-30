@@ -13,13 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserService = void 0;
-const bcryptjs_1 = require("bcryptjs");
 const prisma_1 = __importDefault(require("../prisma"));
 class CreateUserService {
     execute(_a) {
         return __awaiter(this, arguments, void 0, function* ({ name, password }) {
             if (!name || !password) {
                 throw new Error("Name and password are required");
+            }
+            if (password.length < 6) {
+                throw new Error("Password must be at least 6 characters long");
+            }
+            if (name.length < 4) {
+                throw new Error("Name must be at least 4 characters long");
             }
             const userAlreadyExists = yield prisma_1.default.user.findFirst({
                 where: {
@@ -29,12 +34,10 @@ class CreateUserService {
             if (userAlreadyExists) {
                 throw new Error("User already exists");
             }
-            const passwordHash = yield (0, bcryptjs_1.hash)(password, 8);
-            const passwordDecript = yield (0, bcryptjs_1.compare)(password, passwordHash);
             const user = yield prisma_1.default.user.create({
                 data: {
                     name: name,
-                    password: passwordHash
+                    password: password
                 },
                 select: {
                     id: true,
