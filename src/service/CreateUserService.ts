@@ -28,7 +28,7 @@ class CreateUserService {
             throw new Error("User already exists");
         }
     
-        const passwordHash = await hash(password, 8);
+        const passwordHash = await hash(password, 20);
 
     const user = await prismaClient.user.create({
       data:{
