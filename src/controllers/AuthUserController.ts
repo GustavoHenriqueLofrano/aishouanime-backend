@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import { AuthUserService } from '../user/AuthUserService'
+import { AuthUserService } from '../service/AuthUserService'
 
 interface AuthUserRequest {
     name: string;
