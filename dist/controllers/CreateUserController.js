@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserController = void 0;
-const CreateUserService_1 = require("../user/CreateUserService");
+const CreateUserService_1 = require("../service/CreateUserService");
 class CreateUserController {
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

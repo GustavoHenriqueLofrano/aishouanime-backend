@@ -7,11 +7,8 @@ import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 const router = Router();
 
-// Rotas públicas
 router.post('/users', new CreateUserController().handle);
 router.post('/auth', new AuthUserController().handle);
-
-// Rotas protegidas (requerem autenticação)
 router.get('/me', isAuthenticated, new DetailUserController().handle);
 router.post('/comments', isAuthenticated, new CreateCommentController().handle);
 

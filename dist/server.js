@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const cors_1 = __importDefault(require("cors"));
+const helmet_1 = __importDefault(require("helmet"));
 const routes_1 = require("./routes");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
+app.use((0, helmet_1.default)());
 app.use(routes_1.router);
 app.use((err, req, res, next) => {
     if (err instanceof Error) {
@@ -23,5 +25,5 @@ app.use((err, req, res, next) => {
         message: 'Internal server error.'
     });
 });
-app.listen(process.env.PORT, () => console.log('Servidor online!'));
+app.listen(process.env.PORT || 3333, () => console.log('Servidor online!'));
 exports.default = app;

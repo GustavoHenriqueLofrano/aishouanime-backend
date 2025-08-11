@@ -15,7 +15,6 @@ app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if(err instanceof Error){
-    //Se for uma instancia do tipo error
     return res.status(400).json({
       error: err.message
     })
@@ -28,6 +27,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 })
 
-app.listen(process.env.PORT, () => console.log('Servidor online!'))
+app.listen(process.env.PORT || 3333, () => console.log('Servidor online!'))
 
 export default app;
